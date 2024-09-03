@@ -1,0 +1,50 @@
+[
+  {
+    "ContainingType": "ApiAppClima.Controllers.ClimaSupController",
+    "Method": "BuscarClima",
+    "RelativePath": "api/ClimaSup/{cidade}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cidade",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiAppClima.Controllers.UsuariosController",
+    "Method": "AutenticarUsuario",
+    "RelativePath": "api/Usuarios/autenticar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioLogin",
+        "Type": "ApiAppClima.Models.TblUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiAppClima.Controllers.UsuariosController",
+    "Method": "CadastrarUsuario",
+    "RelativePath": "api/Usuarios/cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "novoUsuario",
+        "Type": "ApiAppClima.Models.TblUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,53 @@
+﻿using ApiAppClima.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ApiAppClima.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UsuariosController : ControllerBase
+    {
+        private readonly PostgresContext _dbContext;
+
+        public UsuariosController(PostgresContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        // POST api/usuarios/cadastrar
+        [HttpPost("cadastrar")]
+        public IActionResult CadastrarUsuario([FromBody] TblUsuario novoUsuario)
+        {
+            // Verifica se o usuário já existe
+            if (_dbContext.TblUsuarios.Any(u => u.Nome == novoUsuario.Nome))
+            {
+                return BadRequest("Usuário já cadastrado.");
+            }
+
+            // Adiciona o novo usuário
+            _dbContext.TblUsuarios.Add(novoUsuario);
+
+            // Salva as mudanças no banco de dados
+            _dbContext.SaveChanges();
+
+            return Ok("Usuário cadastrado com sucesso.");
+        }
+
+        // POST api/usuarios/autenticar
+        [HttpPost("autenticar")]
+        public IActionResult AutenticarUsuario([FromBody] TblUsuario usuarioLogin)
+        {
+            // Verifica se o usuário existe e a senha está correta
+            var usuario = _dbContext.TblUsuarios.FirstOrDefault(u => u.Nome == usuarioLogin.Nome && u.Senha == usuarioLogin.Senha);
+
+            if (usuario != null)
+            {
+                return Ok("Autenticação bem-sucedida.");
+            }
+            else
+            {
+                return Unauthorized("Nome ou senha inválidos.");
+            }
+        }
+    }
+}
