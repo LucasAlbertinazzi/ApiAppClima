@@ -2,7 +2,7 @@
   {
     "ContainingType": "ApiAppClima.Controllers.ClimaSupController",
     "Method": "BuscarClima",
-    "RelativePath": "api/ClimaSup/{cidade}",
+    "RelativePath": "api/ClimaSup/busca-clima",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -10,15 +10,77 @@
       {
         "Name": "cidade",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "codusuario",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ApiAppClima.Controllers.ClimaSupController",
+    "Method": "BuscarHistoricoPorHora",
+    "RelativePath": "api/ClimaSup/historico-horario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lat",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "lon",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "start",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "end",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiAppClima.Controllers.ClimaSupController",
+    "Method": "ObterUltimosRegistros",
+    "RelativePath": "api/ClimaSup/ultimos-registros",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codusuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ApiAppClima.Models.TblHistClima, ApiAppClima, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ApiAppClima.Controllers.UsuariosController",
     "Method": "AutenticarUsuario",
-    "RelativePath": "api/Usuarios/autenticar",
+    "RelativePath": "api/Usuarios/autenticacao",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -34,7 +96,7 @@
   {
     "ContainingType": "ApiAppClima.Controllers.UsuariosController",
     "Method": "CadastrarUsuario",
-    "RelativePath": "api/Usuarios/cadastrar",
+    "RelativePath": "api/Usuarios/cadastro-usuario",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

@@ -14,30 +14,26 @@ namespace ApiAppClima.Controllers
             _dbContext = dbContext;
         }
 
-        // POST api/usuarios/cadastrar
-        [HttpPost("cadastrar")]
+        [HttpPost]
+        [Route("cadastro-usuario")]
         public IActionResult CadastrarUsuario([FromBody] TblUsuario novoUsuario)
         {
-            // Verifica se o usuário já existe
             if (_dbContext.TblUsuarios.Any(u => u.Nome == novoUsuario.Nome))
             {
                 return BadRequest("Usuário já cadastrado.");
             }
 
-            // Adiciona o novo usuário
             _dbContext.TblUsuarios.Add(novoUsuario);
 
-            // Salva as mudanças no banco de dados
             _dbContext.SaveChanges();
 
             return Ok("Usuário cadastrado com sucesso.");
         }
 
-        // POST api/usuarios/autenticar
-        [HttpPost("autenticar")]
+        [HttpPost]
+        [Route("autenticacao")]
         public IActionResult AutenticarUsuario([FromBody] TblUsuario usuarioLogin)
         {
-            // Verifica se o usuário existe e a senha está correta
             var usuario = _dbContext.TblUsuarios.FirstOrDefault(u => u.Nome == usuarioLogin.Nome && u.Senha == usuarioLogin.Senha);
 
             if (usuario != null)
