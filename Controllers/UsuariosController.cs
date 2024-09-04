@@ -32,18 +32,28 @@ namespace ApiAppClima.Controllers
 
         [HttpPost]
         [Route("autenticacao")]
-        public IActionResult AutenticarUsuario([FromBody] TblUsuario usuarioLogin)
+        public int AutenticarUsuario([FromBody] TblUsuario usuarioLogin)
         {
             var usuario = _dbContext.TblUsuarios.FirstOrDefault(u => u.Nome == usuarioLogin.Nome && u.Senha == usuarioLogin.Senha);
 
             if (usuario != null)
             {
-                return Ok("Autenticação bem-sucedida.");
+                return usuario.Codusuario;
             }
-            else
+
+            return 0;
+        }
+
+        [HttpGet]
+        [Route("todos-usuarios")]
+        public ActionResult<IEnumerable<TblUsuario>> ObterTodosUsuarios()
+        {
+            var usuarios = _dbContext.TblUsuarios.ToList();
+            if (usuarios == null || !usuarios.Any())
             {
-                return Unauthorized("Nome ou senha inválidos.");
+                return NotFound("Nenhum usuário encontrado.");
             }
+            return Ok(usuarios);
         }
     }
 }

@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "D:\\Projetos\\ApiAppClima\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|d:\\projetos\\apiappclima\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|d:\\projetos\\apiappclima\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|d:\\projetos\\apiappclima\\controllers\\climasupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|solutionrelative:controllers\\climasupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|d:\\projetos\\apiappclima\\models\\tblhistclima.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|solutionrelative:models\\tblhistclima.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|d:\\projetos\\apiappclima\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E81A0251-3735-40F6-921A-1A6A5B3D3857}|ApiAppClima.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,53 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Projetos\\ApiAppClima\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "D:\\Projetos\\ApiAppClima\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-04T12:24:11.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Projetos\\ApiAppClima\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\Projetos\\ApiAppClima\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-04T12:24:05.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TblHistClima.cs",
-              "DocumentMoniker": "D:\\Projetos\\ApiAppClima\\Models\\TblHistClima.cs",
-              "RelativeDocumentMoniker": "Models\\TblHistClima.cs",
-              "ToolTip": "D:\\Projetos\\ApiAppClima\\Models\\TblHistClima.cs",
-              "RelativeToolTip": "Models\\TblHistClima.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAswCkAAAArAAAAAAAAAA==",
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "D:\\Projetos\\ApiAppClima\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
+              "ToolTip": "D:\\Projetos\\ApiAppClima\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-04T12:10:38.995Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClimaSupController.cs",
-              "DocumentMoniker": "D:\\Projetos\\ApiAppClima\\Controllers\\ClimaSupController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ClimaSupController.cs",
-              "ToolTip": "D:\\Projetos\\ApiAppClima\\Controllers\\ClimaSupController.cs",
-              "RelativeToolTip": "Controllers\\ClimaSupController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8AAABtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T16:54:42.058Z",
+              "WhenOpened": "2024-09-04T12:28:51.562Z",
               "EditorCaption": ""
             }
           ]
