@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
 
 namespace ApiAppClima.Controllers
 {
@@ -13,84 +17,81 @@ namespace ApiAppClima.Controllers
         private static readonly string baseUrl = "http://api.openweathermap.org/data/2.5/weather";
 
         private readonly PostgresContext _dbContext;
+        private readonly HttpClient _httpClient;
 
-        public ClimaSupController(PostgresContext dbContext)
+        public ClimaSupController(PostgresContext dbContext, HttpClient httpClient)
         {
             _dbContext = dbContext;
+            _httpClient = httpClient;
         }
 
         [HttpGet]
         [Route("busca-clima")]
-        public async Task<IActionResult> BuscarClima(string cidade, int codusuario)
+        public async Task<TblHistClima> BuscarClima(string cidade, int codusuario)
         {
-            using (HttpClient client = new HttpClient())
+            string url = $"{baseUrl}?q={cidade}&appid={apiKey}&units=metric";
+
+            try
             {
-                string url = $"{baseUrl}?q={cidade}&appid={apiKey}&units=metric";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
 
-                try
+                if (response.IsSuccessStatusCode)
                 {
-                    HttpResponseMessage response = await client.GetAsync(url);
+                    string result = await response.Content.ReadAsStringAsync();
+                    JObject json = JObject.Parse(result);
 
-                    if (response.IsSuccessStatusCode)
+                    var coordenadas = json["coord"];
+                    var clima = json["weather"][0];
+                    var main = json["main"];
+                    var vento = json["wind"];
+                    var nuvens = json["clouds"];
+                    var sys = json["sys"];
+
+                    var descricao = clima["description"].ToString();
+
+                    var tempMin = Math.Round((double)main["temp_min"] - 1, 2);
+                    var tempMax = Math.Round((double)main["temp_max"] + 1, 2);
+
+                    TblHistClima historico = new TblHistClima
                     {
-                        string result = await response.Content.ReadAsStringAsync();
-                        JObject json = JObject.Parse(result);
+                        Coduser = codusuario,
+                        Cidade = cidade.ToUpper(),
+                        Temperatura = $"{main["temp"]}°C",
+                        TemperaturaMinima = $"{tempMin}°C",
+                        TemperaturaMaxima = $"{tempMax}°C",
+                        Pressao = $"{main["pressure"]} hPa",
+                        Umidade = $"{main["humidity"]}%",
+                        VelocidadeVento = vento["speed"].ToString(),
+                        DirecaoVento = vento["deg"].ToString(),
+                        Descricao = descricao,
+                        Nuvens = nuvens["all"].ToString(),
+                        Latitude = (double)coordenadas["lat"],
+                        Longitude = (double)coordenadas["lon"],
+                        Visibilidade = json["visibility"].ToString(),
+                        NascerDoSol = DateTimeOffset.FromUnixTimeSeconds((long)sys["sunrise"]).UtcDateTime,
+                        PorDoSol = DateTimeOffset.FromUnixTimeSeconds((long)sys["sunset"]).UtcDateTime,
+                        DataHora = DateTimeOffset.FromUnixTimeSeconds((long)json["dt"]).UtcDateTime
+                    };
 
-                        // Extraindo todos os dados relevantes
-                        var coordenadas = json["coord"];
-                        var clima = json["weather"][0];
-                        var main = json["main"];
-                        var vento = json["wind"];
-                        var nuvens = json["clouds"];
-                        var sys = json["sys"];
+                    _dbContext.TblHistClimas.Add(historico);
+                    await _dbContext.SaveChangesAsync();
 
-                        // Traduzindo a descrição
-                        string descricao = clima["description"].ToString();
-
-                        // Criando o histórico de clima com mais detalhes
-                        TblHistClima historico = new TblHistClima
-                        {
-                            Coduser = codusuario,
-                            Cidade = cidade.ToUpper(),
-                            Temperatura = $"{main["temp"]}°C",
-                            TemperaturaMinima = $"{main["temp_min"]}°C",
-                            TemperaturaMaxima = $"{main["temp_max"]}°C",
-                            Pressao = $"{main["pressure"]} hPa",
-                            Umidade = $"{main["humidity"]}%",
-                            VelocidadeVento = vento["speed"].ToString(),
-                            DirecaoVento = vento["deg"].ToString(),
-                            Descricao = descricao,
-                            Nuvens = nuvens["all"].ToString(),
-                            Latitude = (double)coordenadas["lat"],
-                            Longitude = (double)coordenadas["lon"],
-                            Visibilidade = json["visibility"].ToString(),
-                            NascerDoSol = DateTimeOffset.FromUnixTimeSeconds((long)sys["sunrise"]).UtcDateTime,
-                            PorDoSol = DateTimeOffset.FromUnixTimeSeconds((long)sys["sunset"]).UtcDateTime,
-                            DataHora = DateTimeOffset.FromUnixTimeSeconds((long)json["dt"]).UtcDateTime
-                        };
-
-                        // Adicionando o histórico ao banco de dados
-                        _dbContext.TblHistClimas.Add(historico);
-                        await _dbContext.SaveChangesAsync();
-
-                        // Retornando a classe Historico
-                        return Ok(historico);
-                    }
-                    else
-                    {
-                        return StatusCode((int)response.StatusCode, "Erro ao buscar dados de clima.");
-                    }
+                    return historico;
                 }
-                catch (HttpRequestException ex)
+                else
                 {
-                    return StatusCode(500, $"Erro ao se comunicar com a API: {ex.Message}");
+                    return null;
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                return null;
             }
         }
 
         [HttpGet]
         [Route("ultimos-registros")]
-        public async Task<ActionResult<List<TblHistClima>>> ObterUltimosRegistros(int codusuario)
+        public async Task<List<TblHistClima>> ObterUltimosRegistros(int codusuario)
         {
             var ultimosRegistros = await _dbContext.TblHistClimas
                 .Where(h => h.Coduser == codusuario)
@@ -100,10 +101,10 @@ namespace ApiAppClima.Controllers
 
             if (ultimosRegistros == null || ultimosRegistros.Count == 0)
             {
-                return NotFound("Nenhum registro encontrado para o usuário informado.");
+                return null;
             }
 
-            return Ok(ultimosRegistros);
+            return ultimosRegistros;
         }
 
 
@@ -152,6 +153,5 @@ namespace ApiAppClima.Controllers
                 }
             }
         }
-
     }
 }

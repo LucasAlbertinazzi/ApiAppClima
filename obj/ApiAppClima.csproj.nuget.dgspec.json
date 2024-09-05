@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projetos\\ApiAppClima\\ApiAppClima.csproj": {}
+    "D:\\GITHUB\\ApiAppClima\\ApiAppClima.csproj": {}
   },
   "projects": {
-    "D:\\Projetos\\ApiAppClima\\ApiAppClima.csproj": {
+    "D:\\GITHUB\\ApiAppClima\\ApiAppClima.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\ApiAppClima\\ApiAppClima.csproj",
+        "projectUniqueName": "D:\\GITHUB\\ApiAppClima\\ApiAppClima.csproj",
         "projectName": "ApiAppClima",
-        "projectPath": "D:\\Projetos\\ApiAppClima\\ApiAppClima.csproj",
+        "projectPath": "D:\\GITHUB\\ApiAppClima\\ApiAppClima.csproj",
         "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\ApiAppClima\\obj\\",
+        "outputPath": "D:\\GITHUB\\ApiAppClima\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -98,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
